@@ -1397,6 +1397,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cs-principle__num { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: var(--space-2); }
 .cs-principle__title { font-family: var(--font-serif); font-size: 18px; font-weight: 400; margin-bottom: var(--space-2); }
 .cs-principle__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+.cs-principle__text { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+
+.cs-goals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-5) 0;
+}
+.cs-goal {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding: var(--space-3) var(--space-4);
+  border-left: 2px solid var(--accent);
+  background: var(--white);
+}
 
 .cs-feature-grid {
   display: grid;
