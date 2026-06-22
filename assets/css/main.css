@@ -640,6 +640,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-bottom: 1px solid var(--divider);
 }
 .page-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: end; }
+.page-hero__left { display: flex; flex-direction: column; }
 .page-hero__headline {
   font-family: var(--font-serif);
   font-size: clamp(40px, 5vw, 72px);
@@ -861,7 +862,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-color: var(--black);
   color: var(--white);
 }
-.work-hub-card__content { padding: var(--space-4); }
+.work-hub-card__content { padding: var(--space-4) 0 0; }
 .work-hub-card__cta { display: inline-block; margin-top: var(--space-3); font-size: 13px; color: var(--accent-text); }
 .work-hub-card__meta { display: flex; justify-content: space-between; margin-top: var(--space-2); font-size: 12px; color: var(--text-muted); }
 
