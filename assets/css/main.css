@@ -658,7 +658,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-top: var(--space-7);
 }
 .work-hub-card {
-  background: var(--white);
   display: flex;
   flex-direction: column;
   cursor: pointer;
