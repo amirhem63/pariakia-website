@@ -269,13 +269,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .trust__logos {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
-  overflow: hidden;
-  flex: 1;
+  gap: var(--space-4);
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 .trust__logos img {
-  height: 22px;
+  height: 20px;
   width: auto;
+  max-width: 100px;
+  object-fit: contain;
   opacity: 0.45;
   filter: grayscale(1);
   flex-shrink: 0;
@@ -635,8 +637,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* === INNER PAGE HERO === */
 .page-hero {
-  padding-top: calc(var(--nav-h) + var(--space-8));
-  padding-bottom: var(--space-7);
+  padding-top: calc(var(--nav-h) + var(--space-7));
+  padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--divider);
 }
 .page-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: end; }
@@ -647,6 +649,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
 }
 .page-hero__sub { font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 480px; }
 
@@ -876,7 +879,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* === SERVICES DETAIL === */
-.services-detail { padding: var(--space-8) 0; }
+.services-detail { padding: var(--space-6) 0 var(--space-8); }
 .services-detail__item {
   display: grid;
   grid-template-columns: 80px 1fr;
@@ -1037,7 +1040,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .contact-section { padding-top: calc(var(--nav-h) + var(--space-8)); padding-bottom: var(--space-8); }
 .contact-details { display: flex; flex-direction: column; gap: var(--space-4); }
 .contact-detail-item { display: flex; gap: var(--space-3); align-items: flex-start; }
-.contact-detail-icon { font-size: 18px; color: var(--accent-text); flex-shrink: 0; margin-top: 2px; }
+.contact-detail-icon { font-size: 18px; line-height: 1; color: var(--accent-text); flex-shrink: 0; margin-top: 3px; }
 .contact-detail-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
 .contact-detail-value { font-size: 15px; }
 .contact-social-link { font-size: 14px; color: var(--text-secondary); border-bottom: 1px solid var(--divider); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
