@@ -1,0 +1,92 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#c8c6be"/>
+    </marker>
+    <marker id="arr-warm" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b7355"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="520" fill="#f5f4f0"/>
+
+  <!-- Centre divider -->
+  <line x1="600" y1="24" x2="600" y2="496" stroke="#e0dfd9" stroke-width="1.5"/>
+
+  <!-- ── LEFT HEADER ── -->
+  <text x="290" y="44" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="10" fill="#a8a59d" text-anchor="middle" letter-spacing="3">TRADITIONAL APPS</text>
+  <text x="290" y="72" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#1c1c1a" text-anchor="middle" font-style="italic">Content-First</text>
+
+  <!-- ── RIGHT HEADER ── -->
+  <text x="910" y="44" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="10" fill="#8b7355" text-anchor="middle" letter-spacing="3">ARUMA</text>
+  <text x="910" y="72" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#1c1c1a" text-anchor="middle" font-style="italic">Human-First</text>
+
+  <!-- ══ LEFT FLOW ══ -->
+
+  <!-- Box 1: Library -->
+  <rect x="100" y="100" width="380" height="66" rx="8" fill="#ffffff" stroke="#e0dfd9" stroke-width="1"/>
+  <text x="290" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Library</text>
+  <text x="290" y="150" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#a8a59d" text-anchor="middle">Hundreds of sessions to browse</text>
+
+  <!-- Arrow -->
+  <line x1="290" y1="166" x2="290" y2="193" stroke="#c8c6be" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+
+  <!-- Box 2: Categories -->
+  <rect x="100" y="197" width="380" height="66" rx="8" fill="#ffffff" stroke="#e0dfd9" stroke-width="1"/>
+  <text x="290" y="225" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Categories</text>
+  <text x="290" y="247" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#a8a59d" text-anchor="middle">Sleep, Stress, Focus, Anxiety…</text>
+
+  <!-- Arrow -->
+  <line x1="290" y1="263" x2="290" y2="290" stroke="#c8c6be" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+
+  <!-- Box 3: Search -->
+  <rect x="100" y="294" width="380" height="66" rx="8" fill="#ffffff" stroke="#e0dfd9" stroke-width="1"/>
+  <text x="290" y="322" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Search</text>
+  <text x="290" y="344" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#a8a59d" text-anchor="middle">User must find the right session</text>
+
+  <!-- Arrow -->
+  <line x1="290" y1="360" x2="290" y2="387" stroke="#c8c6be" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+
+  <!-- Box 4: Selection -->
+  <rect x="100" y="391" width="380" height="66" rx="8" fill="#ffffff" stroke="#e0dfd9" stroke-width="1"/>
+  <text x="290" y="419" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Selection</text>
+  <text x="290" y="441" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#a8a59d" text-anchor="middle">Choose from multiple options</text>
+
+  <!-- Left footer note -->
+  <text x="290" y="488" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#c4c1b8" text-anchor="middle" font-style="italic">Decision fatigue at every step</text>
+
+  <!-- ══ RIGHT FLOW ══ -->
+
+  <!-- Box 1: Emotional State -->
+  <rect x="720" y="100" width="380" height="66" rx="8" fill="#ffffff" stroke="#d4c9b4" stroke-width="1.5"/>
+  <text x="910" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Emotional State</text>
+  <text x="910" y="150" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#8b7355" text-anchor="middle">How are you feeling right now?</text>
+
+  <!-- Arrow -->
+  <line x1="910" y1="166" x2="910" y2="193" stroke="#8b7355" stroke-width="1.5" marker-end="url(#arr-warm)"/>
+
+  <!-- Box 2: Personal Recommendation -->
+  <rect x="720" y="197" width="380" height="66" rx="8" fill="#ffffff" stroke="#d4c9b4" stroke-width="1.5"/>
+  <text x="910" y="225" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Personal Recommendation</text>
+  <text x="910" y="247" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#8b7355" text-anchor="middle">Guided by context and emotional need</text>
+
+  <!-- Arrow -->
+  <line x1="910" y1="263" x2="910" y2="290" stroke="#8b7355" stroke-width="1.5" marker-end="url(#arr-warm)"/>
+
+  <!-- Box 3: Meditation -->
+  <rect x="720" y="294" width="380" height="66" rx="8" fill="#ffffff" stroke="#d4c9b4" stroke-width="1.5"/>
+  <text x="910" y="322" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Meditation</text>
+  <text x="910" y="344" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#8b7355" text-anchor="middle">Distraction-free, calm experience</text>
+
+  <!-- Arrow -->
+  <line x1="910" y1="360" x2="910" y2="387" stroke="#8b7355" stroke-width="1.5" marker-end="url(#arr-warm)"/>
+
+  <!-- Box 4: Reflection -->
+  <rect x="720" y="391" width="380" height="66" rx="8" fill="#faf6ef" stroke="#d4c9b4" stroke-width="1.5"/>
+  <text x="910" y="419" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1c1c1a" text-anchor="middle">Reflection</text>
+  <text x="910" y="441" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#8b7355" text-anchor="middle">Reinforce value and build a reason to return</text>
+
+  <!-- Right footer note -->
+  <text x="910" y="488" font-family="-apple-system, BlinkMacSystemFont, Helvetica, sans-serif" font-size="12" fill="#8b7355" text-anchor="middle" font-style="italic">Effortless from the very first moment</text>
+</svg>

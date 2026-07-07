@@ -439,6 +439,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: 0.03em;
 }
 
+/* === WHAT I DO LAYOUT === */
+.what-i-do-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
 /* === SERVICES PREVIEW === */
 .services-grid {
   display: grid;
@@ -1553,6 +1561,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .nav__links { display: none; }
   .nav__cta.desktop-only { display: none; }
   .nav__hamburger { display: flex; }
+  .what-i-do-layout { grid-template-columns: 1fr; }
   .work-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .page-hero .container { grid-template-columns: 1fr; }

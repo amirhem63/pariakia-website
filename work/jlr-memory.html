@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JLR Memory Experience — In-Car Discovery UX | Paria Kia</title>
+  <meta name="description" content="How a focus on discoverability, trust, and intuitive interaction design transformed a hidden in-car Memory feature into a meaningful, engaging user experience.">
+  <link rel="canonical" href="https://pariakia.com/work/jlr-memory">
+  <link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  .pw-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg, #faf9f6);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .pw-gate__box {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .pw-gate__label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary, #8c8c84);
+    margin-bottom: 20px;
+  }
+  .pw-gate__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--black, #1a1a18);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .pw-gate__sub {
+    font-size: 14px;
+    color: var(--text-secondary, #8c8c84);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .pw-gate__input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--divider, #e5e4df);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--black, #1a1a18);
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .pw-gate__input:focus {
+    border-color: var(--black, #1a1a18);
+  }
+  .pw-gate__input.error {
+    border-color: #c0392b;
+    animation: pw-shake 0.3s ease;
+  }
+  .pw-gate__btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--black, #1a1a18);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .pw-gate__btn:hover { opacity: 0.8; }
+  .pw-gate__error {
+    font-size: 13px;
+    color: #c0392b;
+    margin-top: 10px;
+    min-height: 18px;
+  }
+  @keyframes pw-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="pw-gate" class="pw-gate">
+  <div class="pw-gate__box">
+    <p class="pw-gate__label">Protected Case Study</p>
+    <h1 class="pw-gate__title">JLR Memory Experience</h1>
+    <p class="pw-gate__sub">This case study contains confidential work.<br>Please enter the password to continue.</p>
+    <input id="pw-input" class="pw-gate__input" type="password" placeholder="Enter password" autocomplete="off">
+    <button class="pw-gate__btn" onclick="checkPassword()">Continue →</button>
+    <p id="pw-error" class="pw-gate__error"></p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (sessionStorage.getItem('jlr-memory-auth') === '1') {
+      document.getElementById('pw-gate').style.display = 'none';
+    }
+  })();
+  function checkPassword() {
+    var input = document.getElementById('pw-input');
+    if (input.value === 'PKJLR12') {
+      sessionStorage.setItem('jlr-memory-auth', '1');
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      input.classList.add('error');
+      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+      setTimeout(function() { input.classList.remove('error'); }, 400);
+      input.value = '';
+      input.focus();
+    }
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
+
+<div class="page-transition"></div>
+<div class="cursor"></div>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="../index.html" class="nav__logo">Paria Kia <span>Senior Product Designer & UX Director</span></a>
+    <ul class="nav__links">
+      <li><a href="../work.html">Work</a></li>
+      <li><a href="../services.html">Services</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../insights.html">Insights</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../contact.html" class="nav__cta desktop-only">Book a Consultation</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav__mobile">
+  <a href="../work.html">Work</a>
+  <a href="../services.html">Services</a>
+  <a href="../about.html">About</a>
+  <a href="../insights.html">Insights</a>
+  <a href="../contact.html">Contact</a>
+</div>
+
+<section class="cs-hero">
+  <div class="container">
+    <div class="cs-hero__meta reveal">
+      <a href="../work.html" class="cs-back">← All work</a>
+      <span class="cs-hero__tag">UX Design · Automotive · In-car</span>
+    </div>
+    <h1 class="cs-hero__title reveal">JLR Memory Experience —<br><em>Unlocking Discovery</em></h1>
+    <p class="cs-hero__sub reveal">Turning a hidden in-car feature into a meaningful user moment — through research, reframing, and interaction design that teaches without instructing.</p>
+    <div class="cs-role-row reveal">
+      <div class="cs-role-item"><p class="cs-role-item__label">Role</p><p class="cs-role-item__value">Senior UX / Product Designer</p></div>
+      <div class="cs-role-item"><p class="cs-role-item__label">Team</p><p class="cs-role-item__value">Product Design, Research, PM, Engineering</p></div>
+      <div class="cs-role-item"><p class="cs-role-item__label">Platform</p><p class="cs-role-item__value">In-car digital experience</p></div>
+      <div class="cs-role-item"><p class="cs-role-item__label">Status</p><p class="cs-role-item__value">Delivered / In development</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-hero-image reveal">
+  <img src="../assets/images/land-rover-screen.jpg" alt="JLR Memory in-car experience">
+</div>
+
+<section class="cs-body">
+  <div class="container">
+    <div class="cs-body__grid">
+      <aside class="cs-sidebar reveal">
+        <div class="cs-sidebar__block">
+          <p class="cs-sidebar__label">Company</p>
+          <p class="cs-sidebar__value">JLR (Jaguar Land Rover)</p>
+        </div>
+        <div class="cs-sidebar__block">
+          <p class="cs-sidebar__label">Industry</p>
+          <p class="cs-sidebar__value">Automotive</p>
+        </div>
+        <div class="cs-sidebar__block">
+          <p class="cs-sidebar__label">Services</p>
+          <ul class="cs-sidebar__list">
+            <li>UX Research</li>
+            <li>Interaction Design</li>
+            <li>Usability Testing</li>
+            <li>Concept Exploration</li>
+            <li>Design Leadership</li>
+          </ul>
+        </div>
+        <div class="cs-sidebar__block">
+          <p class="cs-sidebar__label">Confidentiality</p>
+          <p class="cs-sidebar__value">Some details and metrics are not publicly shareable.</p>
+        </div>
+      </aside>
+
+      <div class="cs-content">
+
+        <!-- CHALLENGE -->
+        <div class="cs-section reveal">
+          <p class="cs-label">01 — Challenge</p>
+          <h2 class="cs-heading">A valuable feature existed, but users were not finding its value.</h2>
+          <p class="cs-text">The Memory experience was designed to create personalised and meaningful moments for users by surfacing relevant content at the right time. It had genuine potential to create delight and personal connection in the in-car environment.</p>
+          <p class="cs-text">However, user research revealed an important gap: many users were not exploring beyond the initial surface. The experience relied on users discovering hidden interactions independently — creating a disconnect between what the product could do and what users understood was possible.</p>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-challenge.jpg" alt="JLR Memory — challenge and context">
+        </div>
+
+        <div class="cs-two-col reveal-stagger">
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◎</span>
+            <h3>Low discoverability</h3>
+            <p>Users were not always aware that additional content and interactions existed beneath the surface they could see.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◈</span>
+            <h3>Unclear interaction model</h3>
+            <p>The experience relied on users understanding gestures without enough contextual guidance to feel confident exploring.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◻</span>
+            <h3>In-car constraints</h3>
+            <p>Solutions needed to improve understanding without increasing distraction — the in-car context demands a higher bar for cognitive simplicity.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◇</span>
+            <h3>Balancing guidance and simplicity</h3>
+            <p>Any intervention needed to feel natural, not instructional — adding UI to explain UI would undermine the premium experience.</p>
+          </div>
+        </div>
+
+        <!-- MY ROLE -->
+        <div class="cs-section reveal">
+          <p class="cs-label">02 — My Role</p>
+          <h2 class="cs-heading">Leading the UX process from problem to solution.</h2>
+          <p class="cs-text">I led the UX design process from understanding the problem through exploration, validation, and refinement. Working across Product Design, Research, Product Management, and Engineering, my focus was on moving the team from a surface-level feature request to a deeper understanding of user behaviour.</p>
+          <p class="cs-text">My responsibilities included analysing research findings, identifying behavioural patterns, reframing the problem beyond the initial brief, exploring and testing multiple interaction concepts, and ensuring the final solution balanced usability, feasibility, and platform experience.</p>
+        </div>
+
+        <!-- REFRAMING -->
+        <div class="cs-section reveal">
+          <p class="cs-label">03 — Aligning on the Right Problem</p>
+          <h2 class="cs-heading">Moving from a feature problem to a user behaviour problem.</h2>
+          <p class="cs-text">The initial challenge appeared straightforward: users need to discover the swipe interaction. But through research and collaboration, we identified something deeper.</p>
+          <p class="cs-text">The problem was not that users could not perform the interaction. The problem was that users did not understand that more content existed, that the surface was interactive, or why exploring further would be valuable to them.</p>
+        </div>
+
+        <div class="cs-quote reveal">
+          <blockquote>"How might we create an experience that naturally communicates its possibilities without requiring users to learn it?"</blockquote>
+          <cite>— Problem reframe, shifting from gesture education to self-explanatory design</cite>
+        </div>
+
+        <div class="cs-section reveal">
+          <p class="cs-text">This shift fundamentally changed the design direction — from teaching a gesture to creating an experience that explains itself. The opportunity was not more onboarding. It was better design.</p>
+        </div>
+
+        <!-- COMPETITIVE RESEARCH -->
+        <div class="cs-section reveal">
+          <p class="cs-label">04 — Market & Competitive Research</p>
+          <h2 class="cs-heading">Understanding how leading products create meaningful moments.</h2>
+          <p class="cs-text">Before defining the design direction, I conducted market and competitive research to understand how successful digital experiences create engagement through personalisation, discovery, and emotional connection. The goal was to explore how leading products help users rediscover meaningful content, how personalised experiences encourage repeat engagement, and what interaction patterns help users understand hidden value.</p>
+          <p class="cs-text">This research helped identify opportunities beyond improving discoverability — it helped define how Memory could become a more meaningful and valuable experience for users.</p>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-competitive-3.jpg" alt="JLR Memory — market and competitive research">
+        </div>
+
+        <div class="cs-section reveal">
+          <h2 class="cs-heading">Learning from memory-driven and personalised experiences.</h2>
+          <p class="cs-text">I analysed products across several categories: personal photo and memory platforms, personalised content experiences, entertainment and discovery platforms, and digital experiences focused on user identity and engagement. The research focused on understanding how successful products transform existing user data and behaviour into meaningful moments.</p>
+        </div>
+
+        <div class="cs-gallery reveal-stagger" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-6);">
+          <img src="../assets/images/jlr-competitive-4.jpg" alt="JLR Memory — competitive landscape research" style="width:100%;border-radius:8px;object-fit:cover;">
+          <img src="../assets/images/jlr-competitive-5.jpg" alt="JLR Memory — competitive landscape research" style="width:100%;border-radius:8px;object-fit:cover;">
+        </div>
+
+        <div class="cs-principle-row reveal-stagger">
+          <div class="cs-principle">
+            <span class="cs-principle__num">01</span>
+            <div>
+              <h3 class="cs-principle__title">Successful experiences proactively surface value</h3>
+              <p class="cs-principle__desc">Leading products do not expect users to search for meaningful content. Photo platforms create personalised collections and resurfaced memories. Entertainment platforms use behavioural data to create personalised discovery journeys. The strongest experiences create a reason for users to care — they don't simply display content.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">02</span>
+            <div>
+              <h3 class="cs-principle__title">Emotional connection drives engagement</h3>
+              <p class="cs-principle__desc">Successful memory-based experiences are valuable not because they provide more content, but because they help users reflect on meaningful moments, rediscover personal experiences, and feel understood by the product. This pointed to a clear opportunity: move from "showing users previous content" to "creating meaningful moments users want to revisit."</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">03</span>
+            <div>
+              <h3 class="cs-principle__title">Discovery needs to feel natural</h3>
+              <p class="cs-principle__desc">A consistent pattern across successful products: users are never forced to learn complex interactions. The experience itself communicates what is available, why it matters, and how users can engage. This reinforced the principle that Memory should not rely on instructions — the interface should guide users through intuitive interaction patterns.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-section reveal">
+          <h2 class="cs-heading">Strategic opportunities from competitive research.</h2>
+          <p class="cs-text">Based on competitive research, market patterns, and user insights, three strategic opportunities emerged.</p>
+        </div>
+
+        <div class="cs-gallery reveal-stagger" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-6);">
+          <img src="../assets/images/jlr-competitive-1.jpg" alt="JLR Memory — competitive research" style="width:100%;border-radius:8px;object-fit:cover;">
+          <img src="../assets/images/jlr-competitive-2.jpg" alt="JLR Memory — competitive research" style="width:100%;border-radius:8px;object-fit:cover;">
+        </div>
+
+        <div class="cs-two-col reveal-stagger">
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◎</span>
+            <h3>Make meaningful content easier to discover</h3>
+            <p>Help users understand that more value exists beyond the initial view — without requiring them to seek it out.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◈</span>
+            <h3>Create emotional engagement, not just interaction</h3>
+            <p>Design an experience that encourages users to connect with memories rather than simply consume content.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◻</span>
+            <h3>Build a scalable personalisation foundation</h3>
+            <p>Create interaction patterns that can support future Memory experiences and evolving product capabilities.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◇</span>
+            <h3>How research shaped the design question</h3>
+            <p>Instead of "How can we make users discover the swipe gesture?" we asked "How can we create an experience where users naturally understand and engage with meaningful content?"</p>
+          </div>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-figma-overview.jpg" alt="JLR Memory — design system overview in Figma">
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="cs-section reveal">
+          <p class="cs-label">05 — Research & Key Insights</p>
+          <h2 class="cs-heading">Understanding the behaviour gap.</h2>
+          <p class="cs-text">Through quantitative research and usability testing, we moved beyond what users could do and focused on what they understood. Three insights shaped the design direction.</p>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-memory-workshop.jpg" alt="JLR Memory — design workshop and concept sketches">
+        </div>
+
+        <div class="cs-principle-row reveal-stagger">
+          <div class="cs-principle">
+            <span class="cs-principle__num">01</span>
+            <div>
+              <h3 class="cs-principle__title">Users did not know there was more to discover</h3>
+              <p class="cs-principle__desc">The initial surface gave users limited indication that additional content was available. Many interpreted the visible experience as the complete experience. Design opportunity: make hidden possibilities visible.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">02</span>
+            <div>
+              <h3 class="cs-principle__title">Users needed confidence before interacting</h3>
+              <p class="cs-principle__desc">Unlike mobile, an in-car environment requires stronger confidence before exploration. Users are less likely to experiment with unfamiliar interactions. Design opportunity: create intuitive cues that encourage exploration without pressure.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">03</span>
+            <div>
+              <h3 class="cs-principle__title">Guidance should be built into the experience</h3>
+              <p class="cs-principle__desc">Traditional onboarding could explain the interaction, but at the cost of friction. Design opportunity: design an experience that teaches through interaction rather than instructions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPLORATION -->
+        <div class="cs-section reveal">
+          <p class="cs-label">06 — Discovery & Exploration</p>
+          <h2 class="cs-heading">Exploring different paths before committing to a direction.</h2>
+          <p class="cs-text">Rather than jumping to a solution, I explored multiple concepts to understand what best supported user behaviour. The exploration was framed around four questions: How might users naturally understand available gestures? How can the interface communicate that more content exists? How can we encourage exploration without creating uncertainty? How can this pattern support future experiences?</p>
+          <p class="cs-text">This divergent phase was critical. Several directions that looked viable on paper failed to hold up when tested against the in-car context — where cognitive load is genuinely constrained and the stakes of confusion are higher than on mobile.</p>
+        </div>
+
+        <div class="cs-gallery reveal-stagger" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-6);">
+          <img src="../assets/images/jlr-exploration-1.jpg" alt="JLR Memory — discovery and exploration concepts" style="width:100%;border-radius:8px;object-fit:cover;">
+          <img src="../assets/images/jlr-exploration-2.jpg" alt="JLR Memory — discovery and exploration concepts" style="width:100%;border-radius:8px;object-fit:cover;">
+        </div>
+
+        <!-- PRINCIPLES -->
+        <div class="cs-section reveal">
+          <p class="cs-label">07 — Design Principles</p>
+          <h2 class="cs-heading">Creating an experience that explains itself.</h2>
+        </div>
+
+        <div class="cs-principle-row reveal-stagger">
+          <div class="cs-principle">
+            <span class="cs-principle__num">01</span>
+            <div>
+              <h3 class="cs-principle__title">Make possibilities visible</h3>
+              <p class="cs-principle__desc">Users should understand what they can do without needing instructions. The interface should communicate available actions naturally through visual affordance and spatial cues.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">02</span>
+            <div>
+              <h3 class="cs-principle__title">Reduce cognitive effort</h3>
+              <p class="cs-principle__desc">The experience should feel intuitive from the first interaction. Every element should help users understand the next step — not just complete the current one.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">03</span>
+            <div>
+              <h3 class="cs-principle__title">Maintain a premium experience</h3>
+              <p class="cs-principle__desc">The solution needed to enhance discovery while preserving simplicity. No unnecessary UI. No friction added to remove friction. The improvement should feel invisible.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUTION -->
+        <div class="cs-section reveal">
+          <p class="cs-label">08 — The Solution</p>
+          <h2 class="cs-heading">Designing for natural discovery.</h2>
+          <p class="cs-text">Based on research findings and iterative validation, the final direction improved the way users discovered and interacted with Memory. The solution focused on stronger interaction cues — helping users recognise that additional content was available — improved gesture understanding that made swipe interactions feel more intentional and predictable, and better content exploration through a smoother relationship between the surface and deeper Memory experiences.</p>
+          <p class="cs-text">The goal was not to add more interface elements. It was to improve communication between the product and the user.</p>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-solution.jpg" alt="JLR Memory — solution design exploration">
+        </div>
+
+        <!-- VALIDATION -->
+        <div class="cs-section reveal">
+          <p class="cs-label">09 — Validation & Iteration</p>
+          <h2 class="cs-heading">Testing understanding, not just completion.</h2>
+          <p class="cs-text">During testing, we evaluated more than whether users could complete the interaction. The questions that guided validation were: Did users notice the opportunity? Did they understand what would happen? Did they feel confident exploring? Did the interaction feel natural within the driving context?</p>
+          <p class="cs-text">Feedback informed refinements across visual cues, interaction behaviour, content hierarchy, and overall experience flow. Each iteration brought us closer to an experience that worked without explanation.</p>
+        </div>
+
+        <div class="cs-gallery reveal-stagger" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-6);">
+          <img src="../assets/images/jlr-competitive-4.jpg" alt="JLR Memory — validation and iteration" style="width:100%;border-radius:8px;object-fit:cover;">
+          <img src="../assets/images/jlr-validation-2.jpg" alt="JLR Memory — validation and iteration" style="width:100%;border-radius:8px;object-fit:cover;">
+        </div>
+
+        <!-- COLLABORATION -->
+        <div class="cs-section reveal">
+          <p class="cs-label">10 — Collaboration & Delivery</p>
+          <h2 class="cs-heading">Working across disciplines to move from insight to implementation.</h2>
+          <p class="cs-text">This project required close collaboration across Product Management — to align user needs with product goals; User Research — to translate behavioural insights into design decisions; and Engineering — to ensure concepts were technically achievable and scalable within the in-car platform constraints.</p>
+          <p class="cs-text">The cross-functional dynamic was particularly important here. Design decisions in an automotive context have long lead times and limited ability to iterate post-launch — which meant alignment before implementation was not a nicety, it was a requirement.</p>
+        </div>
+
+        <!-- IMPACT -->
+        <div class="cs-section reveal">
+          <p class="cs-label">11 — Impact & Outcomes</p>
+          <h2 class="cs-heading">Bridging the gap between product capability and user understanding.</h2>
+          <p class="cs-text">The redesign transformed Memory from an experience users could overlook into one they could naturally discover and engage with. By improving interaction clarity and reducing uncertainty, we created a stronger connection between the product's capabilities and the user's expectations.</p>
+        </div>
+
+        <div class="cs-principle-row reveal-stagger">
+          <div class="cs-principle">
+            <span class="cs-principle__num">01</span>
+            <div>
+              <h3 class="cs-principle__title">Increased discoverability</h3>
+              <p class="cs-principle__desc">Users gained a clearer understanding that additional Memory content and interactions were available. Before: users often interpreted the initial surface as the complete experience. After: stronger visual and interaction cues encouraged natural exploration.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">02</span>
+            <div>
+              <h3 class="cs-principle__title">Improved confidence</h3>
+              <p class="cs-principle__desc">The experience reduced hesitation by creating a clearer mental model of what users could do, where additional content existed, and what would happen after interaction. Users were able to explore more naturally without additional instructions.</p>
+            </div>
+          </div>
+          <div class="cs-principle">
+            <span class="cs-principle__num">03</span>
+            <div>
+              <h3 class="cs-principle__title">Reduced cognitive effort</h3>
+              <p class="cs-principle__desc">Instead of relying on users to learn hidden interactions, the design communicated possibilities through the experience itself — resulting in a simpler, more intuitive interaction model.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-section reveal">
+          <h2 class="cs-heading">Product impact.</h2>
+        </div>
+
+        <div class="cs-two-col reveal-stagger">
+          <div class="cs-insight">
+            <span class="cs-insight__icon">↑</span>
+            <h3>Increased engagement opportunity</h3>
+            <p>By improving discovery, the redesign unlocked more opportunities for users to interact with Memory content and experience the value of the feature.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◎</span>
+            <h3>Stronger foundation for future experiences</h3>
+            <p>The updated interaction patterns created a scalable framework that can support future Memory features and personalised experiences.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">✓</span>
+            <h3>Better alignment between user needs and product value</h3>
+            <p>The project helped ensure that investment in the Memory capability translated into a clearer and more meaningful user experience.</p>
+          </div>
+          <div class="cs-insight">
+            <span class="cs-insight__icon">◈</span>
+            <h3>Success metrics</h3>
+            <p>Measured through discovery rate, engagement with additional content, interaction completion rates, user confidence during testing, and qualitative usability findings. Specific metrics are confidential.</p>
+          </div>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-impact.jpg" alt="JLR Memory — impact and outcomes">
+        </div>
+
+        <!-- REFLECTION -->
+        <div class="cs-section reveal">
+          <p class="cs-label">12 — Final Reflection</p>
+          <h2 class="cs-heading">Designing for understanding, not just functionality.</h2>
+          <p class="cs-text">This project reinforced that great product experiences are not created by adding more features — they are created by helping users recognise and access the value that already exists.</p>
+          <p class="cs-text">The biggest challenge was not designing a new interaction. It was closing the gap between what the product could do and what users understood was possible. By combining competitive research, behavioural insights, iterative design, and validation, we created a Memory experience that was more discoverable, intuitive, and meaningful.</p>
+        </div>
+
+        <div class="cs-quote reveal">
+          <blockquote>"Great product experiences are not created by adding more features — they are created by helping users recognise and access the value that already exists."</blockquote>
+          <cite>— Key learning from the JLR Memory project</cite>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="container">
+    <p class="cs-next__label reveal">Next project</p>
+    <a href="land-rover.html" class="cs-next__link reveal">
+      <span class="cs-next__title">Land Rover & Jaguar — UX Architecture →</span>
+    </a>
+  </div>
+</section>
+
+<section class="cta-block">
+  <div class="cta-block__inner">
+    <h2 class="cta-block__headline reveal">Interested in how I approach<br>complex product challenges?</h2>
+    <div class="cta-block__right reveal">
+      <p class="cta-block__text">This project is one example of moving from a feature request to a genuine user behaviour problem. If you're facing something similar, I'd love to talk.</p>
+      <a href="../contact.html" class="btn--light">Start a conversation →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div>
+        <p class="footer__brand-name">Paria Kia</p>
+        <p class="footer__brand-role">Senior Product Designer & UX Director</p>
+        <p class="footer__brand-desc">Designing clarity in complex digital systems.</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Work</p>
+        <ul>
+          <li><a href="../work.html">All Projects</a></li>
+          <li><a href="land-rover.html">Land Rover</a></li>
+          <li><a href="marex.html">Marex</a></li>
+          <li><a href="abbott-lyon.html">Abbott Lyon</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">About</p>
+        <ul>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../insights.html">Insights</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Connect</p>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/paria-kia-71418784/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/ui.ux.pariakia/?hl=en" target="_blank">Instagram</a></li>
+          <li><a href="mailto:paria.kiad@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Paria Kia. All rights reserved.</p>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/in/paria-kia-71418784/" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ui.ux.pariakia/?hl=en" target="_blank">Instagram</a>
+        <a href="mailto:paria.kiad@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

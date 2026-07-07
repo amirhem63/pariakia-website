@@ -7,8 +7,129 @@
   <meta name="description" content="Leading a full-scale design system redesign, CMS architecture, and website transformation for Marex — a global financial services platform.">
   <link rel="canonical" href="https://pariakia.com/work/marex">
   <link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  .pw-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg, #faf9f6);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .pw-gate__box {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .pw-gate__label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary, #8c8c84);
+    margin-bottom: 20px;
+  }
+  .pw-gate__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--black, #1a1a18);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .pw-gate__sub {
+    font-size: 14px;
+    color: var(--text-secondary, #8c8c84);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .pw-gate__input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--divider, #e5e4df);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--black, #1a1a18);
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .pw-gate__input:focus {
+    border-color: var(--black, #1a1a18);
+  }
+  .pw-gate__input.error {
+    border-color: #c0392b;
+    animation: pw-shake 0.3s ease;
+  }
+  .pw-gate__btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--black, #1a1a18);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .pw-gate__btn:hover { opacity: 0.8; }
+  .pw-gate__error {
+    font-size: 13px;
+    color: #c0392b;
+    margin-top: 10px;
+    min-height: 18px;
+  }
+  @keyframes pw-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+</style>
 </head>
 <body>
+
+<div id="pw-gate" class="pw-gate">
+  <div class="pw-gate__box">
+    <p class="pw-gate__label">Protected Case Study</p>
+    <h1 class="pw-gate__title">Marex — Digital Transformation</h1>
+    <p class="pw-gate__sub">This case study contains confidential work.<br>Please enter the password to continue.</p>
+    <input id="pw-input" class="pw-gate__input" type="password" placeholder="Enter password" autocomplete="off">
+    <button class="pw-gate__btn" onclick="checkPassword()">Continue →</button>
+    <p id="pw-error" class="pw-gate__error"></p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (sessionStorage.getItem('marex-auth') === '1') {
+      document.getElementById('pw-gate').style.display = 'none';
+    }
+  })();
+  function checkPassword() {
+    var input = document.getElementById('pw-input');
+    if (input.value === 'PKJLR12') {
+      sessionStorage.setItem('marex-auth', '1');
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      input.classList.add('error');
+      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+      setTimeout(function() { input.classList.remove('error'); }, 400);
+      input.value = '';
+      input.focus();
+    }
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
 
 <div class="page-transition"></div>
 <div class="cursor"></div>

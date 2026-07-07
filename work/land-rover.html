@@ -7,8 +7,129 @@
   <meta name="description" content="How a comprehensive UX architecture project redefined digital touchpoints for Land Rover and Jaguar, creating premium, cohesive experiences across configurators, ownership portals, and marketing sites.">
   <link rel="canonical" href="https://pariakia.com/work/land-rover">
   <link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  .pw-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg, #faf9f6);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .pw-gate__box {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .pw-gate__label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary, #8c8c84);
+    margin-bottom: 20px;
+  }
+  .pw-gate__title {
+    font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--black, #1a1a18);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .pw-gate__sub {
+    font-size: 14px;
+    color: var(--text-secondary, #8c8c84);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .pw-gate__input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--divider, #e5e4df);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--black, #1a1a18);
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .pw-gate__input:focus {
+    border-color: var(--black, #1a1a18);
+  }
+  .pw-gate__input.error {
+    border-color: #c0392b;
+    animation: pw-shake 0.3s ease;
+  }
+  .pw-gate__btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--black, #1a1a18);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .pw-gate__btn:hover { opacity: 0.8; }
+  .pw-gate__error {
+    font-size: 13px;
+    color: #c0392b;
+    margin-top: 10px;
+    min-height: 18px;
+  }
+  @keyframes pw-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+</style>
 </head>
 <body>
+
+<div id="pw-gate" class="pw-gate">
+  <div class="pw-gate__box">
+    <p class="pw-gate__label">Protected Case Study</p>
+    <h1 class="pw-gate__title">Land Rover & Jaguar</h1>
+    <p class="pw-gate__sub">This case study contains confidential work.<br>Please enter the password to continue.</p>
+    <input id="pw-input" class="pw-gate__input" type="password" placeholder="Enter password" autocomplete="off">
+    <button class="pw-gate__btn" onclick="checkPassword()">Continue →</button>
+    <p id="pw-error" class="pw-gate__error"></p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (sessionStorage.getItem('land-rover-auth') === '1') {
+      document.getElementById('pw-gate').style.display = 'none';
+    }
+  })();
+  function checkPassword() {
+    var input = document.getElementById('pw-input');
+    if (input.value === 'PKJLR12') {
+      sessionStorage.setItem('land-rover-auth', '1');
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      input.classList.add('error');
+      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+      setTimeout(function() { input.classList.remove('error'); }, 400);
+      input.value = '';
+      input.focus();
+    }
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
 
 <div class="page-transition"></div>
 <div class="cursor"></div>
@@ -94,7 +215,7 @@
         </div>
 
         <div class="cs-image-wide reveal">
-          <img src="../assets/images/8481bb_c012e7f1f882462f9ecaf0e888d0bfc6~mv2.png" alt="JLR experience mapping">
+          <img src="../assets/images/jlr-land-rover-defender-configurator-ux-design.png" alt="Land Rover Defender vehicle configurator — UX design">
         </div>
 
         <div class="cs-section reveal">
@@ -135,7 +256,7 @@
         </div>
 
         <div class="cs-image-wide reveal">
-          <img src="../assets/images/8481bb_3cb0eb2c1be24d8e969be7a15896f974~mv2.png" alt="Design system">
+          <img src="../assets/images/jlr-configurator-user-flow-finance-player.png" alt="JLR — C-Player and Finance configurator user flow diagram" style="aspect-ratio: auto; object-fit: contain;">
         </div>
 
         <div class="cs-section reveal">
@@ -143,6 +264,29 @@
           <h2 class="cs-heading">Premium design, proven commercial impact.</h2>
           <p class="cs-text">The redesigned configurator saw a 52% increase in completion rate, driven largely by the new mobile experience. Test drive requests — the key conversion metric for the business — increased by 38% across both brands within 12 weeks of launch.</p>
           <p class="cs-text">Internally, the shared design system reduced component duplication by 60% and cut the time to design new features by an estimated 40% — freeing the team to focus on higher-value work.</p>
+        </div>
+
+        <div class="cs-stats reveal">
+          <div class="cs-stat">
+            <p class="cs-stat__label">Dealer Conversion</p>
+            <p class="cs-stat__number">+41%</p>
+          </div>
+          <div class="cs-stat">
+            <p class="cs-stat__label">Lead Generation</p>
+            <p class="cs-stat__number">+168%</p>
+          </div>
+          <div class="cs-stat">
+            <p class="cs-stat__label">Vehicle Configuration</p>
+            <p class="cs-stat__number">+114%</p>
+          </div>
+          <div class="cs-stat">
+            <p class="cs-stat__label">Vehicles Configured</p>
+            <p class="cs-stat__number">45M globally</p>
+          </div>
+        </div>
+
+        <div class="cs-image-wide reveal">
+          <img src="../assets/images/jlr-defender-configurator-multi-screen-ux-overview.png" alt="Land Rover Defender configurator — multi-screen UX design overview" style="aspect-ratio: auto; object-fit: contain;">
         </div>
 
         <div class="cs-quote reveal">
