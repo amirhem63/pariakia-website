@@ -34,6 +34,7 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
 <div class="page-transition"></div>
 <div class="cursor"></div>
 
@@ -62,10 +63,11 @@
   <a href="about.html">About</a>
   <a href="insights.html">Insights</a>
   <a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav__mobile-cta">Discuss a project</a>
 </div>
 
 <!-- HERO -->
-<section>
+<section id="main-content">
   <div class="hero">
     <div class="hero__content">
       <p class="hero__label reveal">UX Strategist & Senior Product Designer</p>
@@ -122,9 +124,10 @@
         </div>
         <div class="work-card__info">
           <p class="work-card__tag">Automotive · Interaction Design · In-car UX</p>
-          <h3 class="work-card__title">JLR Memory — Unlocking Discovery</h3>
+          <h3 class="work-card__title">Automotive Unified Memory</h3>
           <p class="work-card__desc">Turning a hidden in-car Memory feature into a meaningful user moment through research, problem reframing, and interaction design.</p>
           <span class="work-card__link">View case study →</span>
+          <span class="work-card__capability">Interaction Design · Product Strategy · Automotive UX</span>
         </div>
       </a>
       <a href="work/rains.html" class="work-card">
@@ -136,11 +139,33 @@
           <h3 class="work-card__title">Rains UK — Shopify Plus</h3>
           <p class="work-card__desc">Shaping a globally recognised outerwear brand's digital presence through UX strategy and a scalable Shopify Plus architecture.</p>
           <span class="work-card__link">View case study →</span>
+          <span class="work-card__capability">Shopify Plus · Analytics · CRO</span>
         </div>
       </a>
     </div>
   </div>
 </section>
+
+<!-- AUDIENCE PATHWAYS -->
+<div class="audience-paths">
+  <div class="audience-paths__inner">
+    <span class="audience-paths__label">Where would you like to start?</span>
+    <nav class="audience-paths__links" aria-label="Visitor pathways">
+      <a href="about.html" class="audience-paths__item">
+        <span class="audience-paths__title">Hiring a senior product designer</span>
+        <span class="audience-paths__arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="work/aruma.html" class="audience-paths__item">
+        <span class="audience-paths__title">Launching a new product</span>
+        <span class="audience-paths__arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="work/rains.html" class="audience-paths__item">
+        <span class="audience-paths__title">Improving an existing experience</span>
+        <span class="audience-paths__arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </div>
+</div>
 
 <!-- APPROACH -->
 <section class="section" style="background: var(--white);">
@@ -201,24 +226,40 @@
         <div class="service-item" style="background:rgba(255,255,255,0.04);">
           <div class="service-item__icon">✦</div>
           <h3 class="service-item__title" style="color:var(--dark-text);">Product Strategy & Design</h3>
-          <p class="service-item__desc" style="color:rgba(247,246,242,0.55);">From validating an early idea and defining an MVP to designing, testing and launching a scalable digital product.</p>
+          <p class="service-item__desc" style="color:rgba(247,246,242,0.72);">From validating an early idea and defining an MVP to designing, testing and launching a scalable digital product.</p>
         </div>
         <div class="service-item" style="background:rgba(255,255,255,0.04);">
           <div class="service-item__icon">◎</div>
           <h3 class="service-item__title" style="color:var(--dark-text);">UX Strategy</h3>
-          <p class="service-item__desc" style="color:rgba(247,246,242,0.55);">Research, journey mapping and strategic direction that connect customer needs, business goals and technical constraints.</p>
+          <p class="service-item__desc" style="color:rgba(247,246,242,0.72);">Research, journey mapping and strategic direction that connect customer needs, business goals and technical constraints.</p>
         </div>
         <div class="service-item" style="background:rgba(255,255,255,0.04);">
           <div class="service-item__icon">◈</div>
           <h3 class="service-item__title" style="color:var(--dark-text);">Ecommerce UX & CRO</h3>
-          <p class="service-item__desc" style="color:rgba(247,246,242,0.55);">Evidence-led commerce experiences that improve product discovery, customer confidence and conversion.</p>
+          <p class="service-item__desc" style="color:rgba(247,246,242,0.72);">Evidence-led commerce experiences that improve product discovery, customer confidence and conversion.</p>
         </div>
         <div class="service-item" style="background:rgba(255,255,255,0.04);">
           <div class="service-item__icon">⬡</div>
           <h3 class="service-item__title" style="color:var(--dark-text);">Design Systems</h3>
-          <p class="service-item__desc" style="color:rgba(247,246,242,0.55);">Scalable foundations that improve consistency, accessibility and delivery across products and teams.</p>
+          <p class="service-item__desc" style="color:rgba(247,246,242,0.72);">Scalable foundations that improve consistency, accessibility and delivery across products and teams.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARUMA FEATURE -->
+<section class="aruma-feature">
+  <div class="aruma-feature__inner reveal">
+    <div class="aruma-feature__content">
+      <span class="aruma-feature__eyebrow">Zero-to-One · Wellbeing · Subscription Product</span>
+      <h2 class="aruma-feature__title">Aruma — From concept to launch</h2>
+      <p class="aruma-feature__desc">Leading a culturally relevant subscription wellbeing product from concept and UX strategy to launch.</p>
+      <span class="aruma-feature__capability">Product Strategy · MVP Definition · Subscription UX · Product Leadership</span>
+      <a href="work/aruma.html" class="btn btn--outline">View case study →</a>
+    </div>
+    <div class="aruma-feature__visual">
+      <img src="assets/images/aruma-meditation-app-ui-screens-design-overview.png" alt="Aruma — subscription wellbeing app UI screens" loading="lazy">
     </div>
   </div>
 </section>

@@ -133,19 +133,32 @@ document.addEventListener('DOMContentLoaded', () => {
   /* === MARQUEE (trust logos auto-scroll) === */
   const trust = document.querySelector('.trust__logos');
   if (trust) {
-    const clone = trust.cloneNode(true);
-    trust.parentElement.appendChild(clone);
-    let pos = 0;
-    const speed = 0.4;
-    const ticker = () => {
-      pos -= speed;
-      const totalW = trust.scrollWidth;
-      if (Math.abs(pos) >= totalW) pos = 0;
-      trust.style.transform = `translateX(${pos}px)`;
-      clone.style.transform = `translateX(${pos + totalW}px)`;
-      requestAnimationFrame(ticker);
-    };
-    ticker();
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      /* Static display — no animation */
+      trust.style.flexWrap = 'wrap';
+      trust.style.gap = '24px';
+    } else {
+      const clone = trust.cloneNode(true);
+      clone.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
+      trust.parentElement.appendChild(clone);
+      let pos = 0;
+      let paused = false;
+      const speed = 0.28;
+      trust.parentElement.addEventListener('mouseenter', () => { paused = true; });
+      trust.parentElement.addEventListener('mouseleave', () => { paused = false; });
+      const ticker = () => {
+        if (!paused) {
+          pos -= speed;
+          const totalW = trust.scrollWidth;
+          if (Math.abs(pos) >= totalW) pos = 0;
+          trust.style.transform = `translateX(${pos}px)`;
+          clone.style.transform = `translateX(${pos + totalW}px)`;
+        }
+        requestAnimationFrame(ticker);
+      };
+      ticker();
+    }
   }
 
   /* === CASE STUDY FILTER === */
