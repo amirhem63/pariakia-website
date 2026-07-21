@@ -991,7 +991,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* === ABOUT HERO === */
 .about-hero {
-  padding-top: calc(var(--nav-h) + var(--space-8));
+  padding-top: calc(var(--nav-h) + var(--space-7));
   padding-bottom: var(--space-7);
   border-bottom: 1px solid var(--divider);
 }
@@ -1000,9 +1000,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   grid-template-columns: 1fr 1fr;
   gap: var(--space-8);
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--space-6);
 }
 .about-hero__text { font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-3); }
 .about-hero__stats { display: flex; gap: var(--space-6); margin-top: var(--space-6); }
