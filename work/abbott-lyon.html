@@ -8,13 +8,13 @@
   <link rel="canonical" href="https://www.pariakia.com/work/abbott-lyon">
   <link rel="stylesheet" href="../assets/css/main.css">
   <style>
-    .cs-pdf-cta {
+    .cs-slides-cta {
       margin: var(--space-8) 0;
       border: 1px solid var(--divider, #e5e4df);
       border-radius: 12px;
       overflow: hidden;
     }
-    .cs-pdf-cta__header {
+    .cs-slides-cta__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -22,20 +22,20 @@
       background: var(--white, #fff);
       gap: var(--space-4);
     }
-    .cs-pdf-cta__info { flex: 1; }
-    .cs-pdf-cta__label {
+    .cs-slides-cta__info { flex: 1; }
+    .cs-slides-cta__label {
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted, #8c8c84);
       margin-bottom: 4px;
     }
-    .cs-pdf-cta__title {
+    .cs-slides-cta__title {
       font-size: 1rem;
       font-weight: 500;
       color: var(--black, #1a1a18);
     }
-    .cs-pdf-open-btn {
+    .cs-slides-open-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -51,91 +51,125 @@
       white-space: nowrap;
       transition: opacity 0.2s;
     }
-    .cs-pdf-open-btn:hover { opacity: 0.75; }
+    .cs-slides-open-btn:hover { opacity: 0.75; }
 
     /* Modal */
-    #al-pdf-modal {
+    #al-slides-modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10,10,10,0.92);
+      background: rgba(10,10,10,0.93);
       z-index: 10000;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
-    .al-pdf-modal__inner {
+    .al-slides-modal__inner {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 900px;
       width: 100%;
-      max-height: 90vh;
+      max-width: 960px;
     }
-    .al-pdf-modal__close {
+    .al-slides-modal__close {
       position: absolute;
       top: -44px;
       right: 0;
       background: none;
       border: none;
-      color: rgba(255,255,255,0.7);
-      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
       font-family: inherit;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       cursor: pointer;
-      padding: 6px 12px;
+      padding: 6px 0;
       transition: color 0.2s;
     }
-    .al-pdf-modal__close:hover { color: #fff; }
-    .al-pdf-canvas-wrap {
+    .al-slides-modal__close:hover { color: #fff; }
+    .al-slides-modal__img-wrap {
       width: 100%;
-      overflow-y: auto;
-      max-height: calc(90vh - 64px);
-      display: flex;
-      justify-content: center;
       border-radius: 8px;
-      background: #fff;
+      overflow: hidden;
+      background: #111;
+      line-height: 0;
+      max-height: calc(90vh - 70px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    #al-pdf-canvas {
-      display: block;
-      max-width: 100%;
+    .al-slides-modal__img-wrap img {
+      width: 100%;
       height: auto;
+      max-height: calc(90vh - 70px);
+      object-fit: contain;
+      display: block;
     }
-    .al-pdf-modal__nav {
+    .al-slides-modal__nav {
       display: flex;
       align-items: center;
       gap: 20px;
       margin-top: 16px;
     }
-    .al-pdf-nav-btn {
-      background: rgba(255,255,255,0.12);
+    .al-slides-nav-btn {
+      background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.15);
       color: #fff;
       border-radius: 8px;
-      padding: 9px 20px;
+      padding: 9px 22px;
       font-size: 0.82rem;
       font-family: inherit;
       letter-spacing: 0.04em;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .al-pdf-nav-btn:hover { background: rgba(255,255,255,0.2); }
-    .al-pdf-nav-btn:disabled { opacity: 0.3; cursor: default; }
-    .al-pdf-page-info {
+    .al-slides-nav-btn:hover { background: rgba(255,255,255,0.2); }
+    .al-slides-nav-btn:disabled { opacity: 0.28; cursor: default; }
+    .al-slides-page-info {
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.55);
-      min-width: 60px;
+      color: rgba(255,255,255,0.45);
+      min-width: 52px;
       text-align: center;
+      letter-spacing: 0.04em;
     }
-    .al-pdf-loading {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-      padding: 40px;
-    }
+  </style>
+  <style>
+    .pw-gate { position: fixed; inset: 0; background: var(--bg, #faf9f6); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .pw-gate__box { width: 100%; max-width: 400px; text-align: center; }
+    .pw-gate__label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary, #8c8c84); margin-bottom: 20px; }
+    .pw-gate__title { font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif); font-size: 28px; font-weight: 400; color: var(--black, #1a1a18); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .pw-gate__sub { font-size: 14px; color: var(--text-secondary, #8c8c84); margin-bottom: 32px; line-height: 1.6; }
+    .pw-gate__input { width: 100%; padding: 14px 18px; border: 1px solid var(--divider, #e5e4df); border-radius: 8px; font-size: 15px; font-family: inherit; background: #fff; color: var(--black, #1a1a18); outline: none; transition: border-color 0.2s; text-align: center; letter-spacing: 0.08em; margin-bottom: 12px; box-sizing: border-box; }
+    .pw-gate__input:focus { border-color: var(--black, #1a1a18); }
+    .pw-gate__input.error { border-color: #c0392b; animation: pw-shake 0.3s ease; }
+    .pw-gate__btn { width: 100%; padding: 14px; background: var(--black, #1a1a18); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-family: inherit; font-weight: 400; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.2s; }
+    .pw-gate__btn:hover { opacity: 0.8; }
+    .pw-gate__error { font-size: 13px; color: #c0392b; margin-top: 10px; min-height: 18px; }
+    #al-slides-modal img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+    @keyframes pw-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
   </style>
 </head>
 <body>
+
+<div id="pw-gate" class="pw-gate">
+  <div class="pw-gate__box">
+    <p class="pw-gate__label">Protected Case Study</p>
+    <h1 class="pw-gate__title">Abbott Lyon</h1>
+    <p class="pw-gate__sub">This case study contains confidential work.<br>Please enter the password to continue.</p>
+    <input id="pw-input" class="pw-gate__input" type="password" placeholder="Enter password" autocomplete="off">
+    <button class="pw-gate__btn" onclick="checkPassword()">Continue →</button>
+    <p id="pw-error" class="pw-gate__error"></p>
+  </div>
+</div>
+<script>
+  (function() { if (sessionStorage.getItem('abbott-lyon-auth') === '1') { document.getElementById('pw-gate').style.display = 'none'; } })();
+  function checkPassword() {
+    var input = document.getElementById('pw-input');
+    if (input.value === 'PKAL24') { sessionStorage.setItem('abbott-lyon-auth', '1'); document.getElementById('pw-gate').style.display = 'none'; }
+    else { input.classList.add('error'); document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.'; setTimeout(function() { input.classList.remove('error'); }, 400); input.value = ''; input.focus(); }
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Enter' && document.getElementById('pw-gate').style.display !== 'none') checkPassword(); });
+</script>
 
 <div class="page-transition"></div>
 <div class="cursor"></div>
@@ -223,6 +257,16 @@
           <p class="cs-text">The brief: redesign the core shopping experience — particularly the product pages and personalisation flow — to match the ambition and premium positioning of the brand.</p>
         </div>
 
+        <div class="cs-slides-cta reveal">
+          <div class="cs-slides-cta__header">
+            <div class="cs-slides-cta__info">
+              <p class="cs-slides-cta__label">Research Deliverable</p>
+              <p class="cs-slides-cta__title">UX Research Presentation — Abbott Lyon</p>
+            </div>
+            <button class="cs-slides-open-btn" onclick="alSlides.open()">Browse slides →</button>
+          </div>
+        </div>
+
         <div class="cs-image-wide reveal">
           <img src="../assets/images/al-ui-1.png" alt="Abbott Lyon — homepage scrollmap and heatmap analysis">
         </div>
@@ -261,28 +305,17 @@
           <img src="../assets/images/al-competitor-analysis.png" alt="Abbott Lyon — competitor analysis across Missoma, Pandora, Tiffany and seven other luxury jewellery brands">
         </div>
 
-        <div class="cs-pdf-cta reveal">
-          <div class="cs-pdf-cta__header">
-            <div class="cs-pdf-cta__info">
-              <p class="cs-pdf-cta__label">Research Deliverable</p>
-              <p class="cs-pdf-cta__title">UX Research Presentation — Abbott Lyon</p>
+        <!-- Slides Modal -->
+        <div id="al-slides-modal" role="dialog" aria-modal="true" aria-label="UX Research Presentation">
+          <div class="al-slides-modal__inner">
+            <button class="al-slides-modal__close" onclick="alSlides.close()">✕ Close</button>
+            <div class="al-slides-modal__img-wrap" id="al-slides-wrap">
+              <img id="al-slides-img" src="" alt="UX Research Presentation slide" draggable="false">
             </div>
-            <button class="cs-pdf-open-btn" onclick="alPDF.open()">Browse slides →</button>
-          </div>
-        </div>
-
-        <!-- PDF Modal -->
-        <div id="al-pdf-modal" role="dialog" aria-modal="true" aria-label="UX Research Presentation">
-          <div class="al-pdf-modal__inner">
-            <button class="al-pdf-modal__close" onclick="alPDF.close()">✕ Close</button>
-            <div class="al-pdf-canvas-wrap">
-              <p class="al-pdf-loading" id="al-pdf-loading">Loading presentation…</p>
-              <canvas id="al-pdf-canvas"></canvas>
-            </div>
-            <div class="al-pdf-modal__nav">
-              <button class="al-pdf-nav-btn" id="al-pdf-prev" onclick="alPDF.prev()" disabled>← Prev</button>
-              <span class="al-pdf-page-info" id="al-pdf-page-info">— / —</span>
-              <button class="al-pdf-nav-btn" id="al-pdf-next" onclick="alPDF.next()" disabled>Next →</button>
+            <div class="al-slides-modal__nav">
+              <button class="al-slides-nav-btn" id="al-slides-prev" onclick="alSlides.prev()">← Prev</button>
+              <span class="al-slides-page-info" id="al-slides-info">1 / 32</span>
+              <button class="al-slides-nav-btn" id="al-slides-next" onclick="alSlides.next()">Next →</button>
             </div>
           </div>
         </div>
@@ -389,78 +422,51 @@
 </footer>
 
 <script src="../assets/js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-  const alPDF = (() => {
-    const PDF_URL = '../assets/pdfs/al-research-presentation.pdf';
-    let pdfDoc = null, pageNum = 1, rendering = false, pending = null;
+  /* === Image Slide Protection === */
+  document.addEventListener('contextmenu', e => { if (e.target.closest('#al-slides-modal')) e.preventDefault(); });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('al-slides-modal') || document.getElementById('al-slides-modal').style.display !== 'flex') return;
+    if ((e.ctrlKey || e.metaKey) && ['s','p','u'].includes(e.key.toLowerCase())) e.preventDefault();
+  });
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  /* === Slide Viewer === */
+  const alSlides = (() => {
+    const TOTAL = 32;
+    const BASE  = '../assets/images/al-slides/slide-';
+    let current = 1;
 
-    const modal   = document.getElementById('al-pdf-modal');
-    const canvas  = document.getElementById('al-pdf-canvas');
-    const ctx     = canvas.getContext('2d');
-    const info    = document.getElementById('al-pdf-page-info');
-    const loading = document.getElementById('al-pdf-loading');
-    const btnPrev = document.getElementById('al-pdf-prev');
-    const btnNext = document.getElementById('al-pdf-next');
+    const modal   = document.getElementById('al-slides-modal');
+    const img     = document.getElementById('al-slides-img');
+    const info    = document.getElementById('al-slides-info');
+    const btnPrev = document.getElementById('al-slides-prev');
+    const btnNext = document.getElementById('al-slides-next');
 
-    function renderPage(n) {
-      rendering = true;
-      pdfDoc.getPage(n).then(page => {
-        const vp = page.getViewport({ scale: window.devicePixelRatio >= 2 ? 2 : 1.8 });
-        canvas.width  = vp.width;
-        canvas.height = vp.height;
-        canvas.style.width  = Math.round(vp.width  / (window.devicePixelRatio >= 2 ? 2 : 1.8)) + 'px';
-        canvas.style.height = Math.round(vp.height / (window.devicePixelRatio >= 2 ? 2 : 1.8)) + 'px';
-        page.render({ canvasContext: ctx, viewport: vp }).promise.then(() => {
-          rendering = false;
-          if (pending !== null) { renderPage(pending); pending = null; }
-        });
-      });
-      info.textContent = `${n} / ${pdfDoc.numPages}`;
-      btnPrev.disabled = n <= 1;
-      btnNext.disabled = n >= pdfDoc.numPages;
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function show(n) {
+      current = Math.max(1, Math.min(TOTAL, n));
+      img.src = BASE + pad(current) + '.jpg';
+      info.textContent = current + ' / ' + TOTAL;
+      btnPrev.disabled = current <= 1;
+      btnNext.disabled = current >= TOTAL;
+      /* pre-load next */
+      if (current < TOTAL) { const pre = new Image(); pre.src = BASE + pad(current + 1) + '.jpg'; }
     }
 
-    function queueRender(n) {
-      if (rendering) { pending = n; } else { renderPage(n); }
-    }
-
-    function loadPDF() {
-      if (pdfDoc) return;
-      pdfjsLib.getDocument(PDF_URL).promise.then(doc => {
-        pdfDoc = doc;
-        loading.style.display = 'none';
-        canvas.style.display  = 'block';
-        renderPage(pageNum);
-      });
-    }
-
-    function open() {
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      loadPDF();
-    }
-
-    function close() {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    function prev() { if (pageNum <= 1) return; pageNum--; queueRender(pageNum); }
-    function next() { if (!pdfDoc || pageNum >= pdfDoc.numPages) return; pageNum++; queueRender(pageNum); }
+    function open()  { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; show(1); }
+    function close() { modal.style.display = 'none';  document.body.style.overflow = ''; }
+    function prev()  { show(current - 1); }
+    function next()  { show(current + 1); }
 
     modal.addEventListener('click', e => { if (e.target === modal) close(); });
     document.addEventListener('keydown', e => {
       if (modal.style.display !== 'flex') return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft')  prev();
-      if (e.key === 'ArrowRight') next();
+      if (e.key === 'Escape')      close();
+      if (e.key === 'ArrowLeft')   prev();
+      if (e.key === 'ArrowRight')  next();
     });
 
-    canvas.style.display = 'none';
     return { open, close, prev, next };
   })();
 </script>
