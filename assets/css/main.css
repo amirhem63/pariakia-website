@@ -677,6 +677,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .work-hub-card__image-wrap {
   overflow: hidden;
   background: #f0ede8;
+  position: relative;
+}
+.work-hub-card__pw-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(248, 247, 243, 0.92);
+  backdrop-filter: blur(4px);
+  border-radius: 100px;
+  padding: 5px 12px 5px 9px;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: #6b6b62;
+  pointer-events: none;
+  z-index: 2;
 }
 .work-hub-card__image {
   width: 100%;

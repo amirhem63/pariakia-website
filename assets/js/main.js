@@ -179,4 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* === DYNAMIC COPYRIGHT YEAR === */
+  document.querySelectorAll('.js-year').forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
+
 });
