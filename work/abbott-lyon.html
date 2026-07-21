@@ -134,42 +134,42 @@
     }
   </style>
   <style>
-    .pw-gate { position: fixed; inset: 0; background: var(--bg, #faf9f6); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 24px; }
-    .pw-gate__box { width: 100%; max-width: 400px; text-align: center; }
-    .pw-gate__label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary, #8c8c84); margin-bottom: 20px; }
-    .pw-gate__title { font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif); font-size: 28px; font-weight: 400; color: var(--black, #1a1a18); margin-bottom: 8px; letter-spacing: -0.01em; }
-    .pw-gate__sub { font-size: 14px; color: var(--text-secondary, #8c8c84); margin-bottom: 32px; line-height: 1.6; }
-    .pw-gate__input { width: 100%; padding: 14px 18px; border: 1px solid var(--divider, #e5e4df); border-radius: 8px; font-size: 15px; font-family: inherit; background: #fff; color: var(--black, #1a1a18); outline: none; transition: border-color 0.2s; text-align: center; letter-spacing: 0.08em; margin-bottom: 12px; box-sizing: border-box; }
-    .pw-gate__input:focus { border-color: var(--black, #1a1a18); }
-    .pw-gate__input.error { border-color: #c0392b; animation: pw-shake 0.3s ease; }
-    .pw-gate__btn { width: 100%; padding: 14px; background: var(--black, #1a1a18); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-family: inherit; font-weight: 400; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.2s; }
-    .pw-gate__btn:hover { opacity: 0.8; }
-    .pw-gate__error { font-size: 13px; color: #c0392b; margin-top: 10px; min-height: 18px; }
     #al-slides-modal img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+    /* Password prompt inside modal */
+    #al-slides-pw {
+      display: flex; position: fixed; inset: 0;
+      background: rgba(10,10,10,0.93); z-index: 10001;
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .al-slides-pw__box { width: 100%; max-width: 380px; text-align: center; background: var(--bg, #faf9f6); border-radius: 16px; padding: 40px 36px; }
+    .al-slides-pw__label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary, #8c8c84); margin-bottom: 16px; }
+    .al-slides-pw__title { font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif); font-size: 24px; font-weight: 400; color: var(--black, #1a1a18); margin-bottom: 6px; }
+    .al-slides-pw__sub { font-size: 13px; color: var(--text-secondary, #8c8c84); margin-bottom: 28px; line-height: 1.6; }
+    .al-slides-pw__input { width: 100%; padding: 13px 16px; border: 1px solid var(--divider, #e5e4df); border-radius: 8px; font-size: 15px; font-family: inherit; background: #fff; color: var(--black, #1a1a18); outline: none; transition: border-color 0.2s; text-align: center; letter-spacing: 0.08em; margin-bottom: 10px; box-sizing: border-box; }
+    .al-slides-pw__input:focus { border-color: var(--black, #1a1a18); }
+    .al-slides-pw__input.error { border-color: #c0392b; animation: pw-shake 0.3s ease; }
+    .al-slides-pw__btn { width: 100%; padding: 13px; background: var(--black, #1a1a18); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-family: inherit; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.2s; }
+    .al-slides-pw__btn:hover { opacity: 0.8; }
+    .al-slides-pw__cancel { margin-top: 14px; font-size: 12px; color: var(--text-muted, #8c8c84); cursor: pointer; background: none; border: none; font-family: inherit; letter-spacing: 0.04em; }
+    .al-slides-pw__cancel:hover { color: var(--black, #1a1a18); }
+    .al-slides-pw__error { font-size: 12px; color: #c0392b; margin-top: 8px; min-height: 16px; }
     @keyframes pw-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
   </style>
 </head>
 <body>
 
-<div id="pw-gate" class="pw-gate">
-  <div class="pw-gate__box">
-    <p class="pw-gate__label">Protected Case Study</p>
-    <h1 class="pw-gate__title">Abbott Lyon</h1>
-    <p class="pw-gate__sub">This case study contains confidential work.<br>Please enter the password to continue.</p>
-    <input id="pw-input" class="pw-gate__input" type="password" placeholder="Enter password" autocomplete="off">
-    <button class="pw-gate__btn" onclick="checkPassword()">Continue →</button>
-    <p id="pw-error" class="pw-gate__error"></p>
+<!-- Slide password prompt (shown before slides modal) -->
+<div id="al-slides-pw" style="display:none;">
+  <div class="al-slides-pw__box">
+    <p class="al-slides-pw__label">Protected Content</p>
+    <h2 class="al-slides-pw__title">UX Research Presentation</h2>
+    <p class="al-slides-pw__sub">Enter the password to browse the slides.</p>
+    <input id="al-slides-pw-input" class="al-slides-pw__input" type="password" placeholder="Password" autocomplete="off">
+    <button class="al-slides-pw__btn" onclick="alSlidesPW.submit()">View slides →</button>
+    <p id="al-slides-pw-error" class="al-slides-pw__error"></p>
+    <button class="al-slides-pw__cancel" onclick="alSlidesPW.cancel()">Cancel</button>
   </div>
 </div>
-<script>
-  (function() { if (sessionStorage.getItem('abbott-lyon-auth') === '1') { document.getElementById('pw-gate').style.display = 'none'; } })();
-  function checkPassword() {
-    var input = document.getElementById('pw-input');
-    if (input.value === 'PKJLR12') { sessionStorage.setItem('abbott-lyon-auth', '1'); document.getElementById('pw-gate').style.display = 'none'; }
-    else { input.classList.add('error'); document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.'; setTimeout(function() { input.classList.remove('error'); }, 400); input.value = ''; input.focus(); }
-  }
-  document.addEventListener('keydown', function(e) { if (e.key === 'Enter' && document.getElementById('pw-gate').style.display !== 'none') checkPassword(); });
-</script>
 
 <div class="page-transition"></div>
 <div class="cursor"></div>
@@ -423,12 +423,48 @@
 
 <script src="../assets/js/main.js"></script>
 <script>
-  /* === Image Slide Protection === */
+  /* === Slide protection === */
   document.addEventListener('contextmenu', e => { if (e.target.closest('#al-slides-modal')) e.preventDefault(); });
   document.addEventListener('keydown', e => {
-    if (!document.getElementById('al-slides-modal') || document.getElementById('al-slides-modal').style.display !== 'flex') return;
+    if (document.getElementById('al-slides-modal').style.display !== 'flex') return;
     if ((e.ctrlKey || e.metaKey) && ['s','p','u'].includes(e.key.toLowerCase())) e.preventDefault();
   });
+
+  /* === Password prompt === */
+  const alSlidesPW = (() => {
+    const overlay = document.getElementById('al-slides-pw');
+    const input   = document.getElementById('al-slides-pw-input');
+    const errEl   = document.getElementById('al-slides-pw-error');
+
+    function show() {
+      input.value = ''; errEl.textContent = '';
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => input.focus(), 50);
+    }
+    function cancel() {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    function submit() {
+      if (input.value === 'PKJLR12') {
+        sessionStorage.setItem('al-slides-auth', '1');
+        overlay.style.display = 'none';
+        alSlides.open();
+      } else {
+        input.classList.add('error');
+        errEl.textContent = 'Incorrect password. Please try again.';
+        setTimeout(() => input.classList.remove('error'), 400);
+        input.value = ''; input.focus();
+      }
+    }
+    document.addEventListener('keydown', e => {
+      if (overlay.style.display !== 'flex') return;
+      if (e.key === 'Enter')  submit();
+      if (e.key === 'Escape') cancel();
+    });
+    return { show, cancel, submit };
+  })();
 
   /* === Slide Viewer === */
   const alSlides = (() => {
@@ -443,30 +479,33 @@
     const btnNext = document.getElementById('al-slides-next');
 
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
     function show(n) {
       current = Math.max(1, Math.min(TOTAL, n));
       img.src = BASE + pad(current) + '.jpg';
       info.textContent = current + ' / ' + TOTAL;
       btnPrev.disabled = current <= 1;
       btnNext.disabled = current >= TOTAL;
-      /* pre-load next */
       if (current < TOTAL) { const pre = new Image(); pre.src = BASE + pad(current + 1) + '.jpg'; }
     }
-
-    function open()  { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; show(1); }
-    function close() { modal.style.display = 'none';  document.body.style.overflow = ''; }
+    function open() {
+      /* skip password prompt if already authenticated this session */
+      if (sessionStorage.getItem('al-slides-auth') === '1') {
+        modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; show(1);
+      } else {
+        alSlidesPW.show();
+      }
+    }
+    function close() { modal.style.display = 'none'; document.body.style.overflow = ''; }
     function prev()  { show(current - 1); }
     function next()  { show(current + 1); }
 
     modal.addEventListener('click', e => { if (e.target === modal) close(); });
     document.addEventListener('keydown', e => {
       if (modal.style.display !== 'flex') return;
-      if (e.key === 'Escape')      close();
-      if (e.key === 'ArrowLeft')   prev();
-      if (e.key === 'ArrowRight')  next();
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  prev();
+      if (e.key === 'ArrowRight') next();
     });
-
     return { open, close, prev, next };
   })();
 </script>
