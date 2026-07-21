@@ -165,7 +165,7 @@
   (function() { if (sessionStorage.getItem('abbott-lyon-auth') === '1') { document.getElementById('pw-gate').style.display = 'none'; } })();
   function checkPassword() {
     var input = document.getElementById('pw-input');
-    if (input.value === 'PKAL24') { sessionStorage.setItem('abbott-lyon-auth', '1'); document.getElementById('pw-gate').style.display = 'none'; }
+    if (input.value === 'PKJLR12') { sessionStorage.setItem('abbott-lyon-auth', '1'); document.getElementById('pw-gate').style.display = 'none'; }
     else { input.classList.add('error'); document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.'; setTimeout(function() { input.classList.remove('error'); }, 400); input.value = ''; input.focus(); }
   }
   document.addEventListener('keydown', function(e) { if (e.key === 'Enter' && document.getElementById('pw-gate').style.display !== 'none') checkPassword(); });
